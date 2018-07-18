@@ -1,0 +1,31 @@
+
+<% flash.each do |type, msg| %> 
+<% 
+  case type
+  when "notice"
+    tipo = "success"
+  when "error"
+    tipo = "danger"
+  end
+%>
+<div class="col-md-10 col-md-offset-1" id="flash">
+  <div class="alert alert-<%= tipo %> alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                    </button>
+    <% array = msg.split('<li>') %>
+  <% if array.count > 1 %>
+      <% array.each_with_index do |message, index| %>
+        <% if index!=0 %>
+            <%= content_tag :div, ("<li>"+message).html_safe %>
+        <% end  %>
+      <% end %>
+    <% else %>
+
+      <%= content_tag :div, array[0].to_s.tr('"','').tr("[",'').tr(']','') %>
+
+    <% end %> 
+  </div>
+</div>
+<% end %>
+
+

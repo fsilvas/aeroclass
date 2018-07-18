@@ -1,0 +1,93 @@
+
+<div class="row">
+<h2 class="page-header col-md-offset-2 col-md-8">Editar datos</h2>
+<div class="col-md-8 col-md-offset-2">
+<div class="panel panel-default">
+  <div class="panel-body">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f| %>
+    <div class="header">
+      
+    </div>
+        <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+              <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                  <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true" id="data_buton">Datos</a></li>
+                  <li class=""><a href="#profile" data-toggle="tab" aria-expanded="false" id="password_buton">Contraseña</a></li>
+              </ul>
+            </div>
+        </div>
+        <div id="my-tab-content" class="tab-content text-center">
+          <br>
+          <br>
+            <div class="tab-pane active" id="home">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Nombre</label>
+                    <div class="col-md-9">
+                        <%= f.text_field :name, :class => 'form-control' %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Apellido</label>
+                    <div class="col-md-9">
+                        <%= f.text_field :last_name, :class => 'form-control' %>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="profile">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Nueva contraseña</label>
+                    <div class="col-md-9">
+                        <%= f.password_field :password, :class => 'form-control' %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Confirmar contraseña</label>
+                    <div class="col-md-9">
+                        <%= f.password_field :password_confirmation, :class => 'form-control' %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">contraseña actual</label>
+                    <div class="col-md-9">
+                        <%= f.password_field :current_password, :class => 'form-control' %>
+                    </div>
+                </div>
+                
+            </div>
+           
+        </div>
+        <div class="card-footer">
+          <div class="form-group">
+            <div class="col-md-4 col-md-offset-3">
+              <%= f.submit "Guardar", class: "btn btn-success" %>           
+            </div>
+            <div class="col-md-2">
+              <%= link_to "Cancelar", root_path, class: "btn btn-primary" %>            
+            </div>
+          </div>
+        </div>
+
+
+    
+  <% end %>
+</div> <!-- end card -->
+</div>
+</div>
+
+</div>
+
+
+
+<!-- Modal -->
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  $('#data_buton').on('click',function(){
+    $('#buser_password').val("");
+    $('#buser_password_confirmation').val("");
+    $('#buser_current_password').val("");
+    
+
+  });
+});
+</script>
