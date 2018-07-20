@@ -1,0 +1,32 @@
+<br>
+<br>
+<div class="row">
+	<div class="col-md-10 col-xs-10 col-xs-offset-1 col-md-offset-1">
+	  <%= link_to 'Editar', edit_value_path(@value) %>
+	</div>
+	<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+	  <div class="panel panel-default">
+	    <div class="panel-body">
+	      <table class="table">
+	        <thead>
+	          <tr>
+	            <th>Dolar</th>            
+	            <th>Euro</th>
+	            <th>Costo Tablet</th>
+	            <th>CI por Libro</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          
+	            <tr>
+	              <td><%= number_to_currency(@value.dolar, unit: "$",  precision: 0 , format: "%u %n") %></td>
+	              <td><%= number_to_currency(@value.euro, unit: "$",  precision: 0 , format: "%u %n") %></td>
+	              <td><%= number_to_currency(@value.tablet_cost, unit: "$",  precision: 0 , format: "%u %n") %></td>
+	              <td><%= number_to_currency(@value.book_cost, unit: "$",  precision: 0 , format: "%u %n") %></td>
+	            </tr>	
+	        </tbody>
+	      </table>
+	    </div>
+	  </div>
+	</div>
+</div>

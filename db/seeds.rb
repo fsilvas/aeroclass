@@ -14,3 +14,5 @@ user.password = '1234567890'
 user.password_confirmation = '1234567890'
 user.add_role :admin
 user.save
+
+value = Value.create(dolar: 0, euro: 0, tablet_cost: 0, book_cost: 0)
