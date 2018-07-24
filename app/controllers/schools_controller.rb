@@ -1,5 +1,7 @@
 class SchoolsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_school, only: [:show, :edit, :update, :destroy]
+  autocomplete :school, :name, :full => true
 
   # GET /schools
   # GET /schools.json
@@ -58,6 +60,17 @@ class SchoolsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to schools_url, notice: 'School was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def show_individual
+    if (params[:school_id] != "")
+      puts "-----------------"
+      puts params[:school_id]
+      @school = School.find(params[:school_id])
+      redirect_to @school
+    else
+      redirect_to schools_url
     end
   end
 

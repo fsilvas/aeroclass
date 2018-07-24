@@ -7,6 +7,16 @@
                 <% end %>
             </li>
             <li>
+                <%= link_to licenses_path, class: ('active' if (controller.controller_name == 'licenses')) do  %>
+                    <%= material_icon.description %> Costo licencias
+                <% end %>
+            </li>
+            <li>
+                <%= link_to categories_path, class: ('active' if (controller.controller_name == 'categories')) do  %>
+                    <%= material_icon.description %> Tipos de proyectos
+                <% end %>
+            </li>
+            <li>
                 <%= link_to Value.first, class: ('active' if (controller.controller_name == 'values')) do  %>
                     <%= material_icon.monetization_on %> Valores fijos
                 <% end %>

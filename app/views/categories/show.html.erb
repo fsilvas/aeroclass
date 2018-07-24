@@ -1,0 +1,198 @@
+<input id="category_id" value="<%= @category.id %>" hidden>
+<br>
+<br>
+<br>
+<div class="col-md-10 col-md-offset-1">
+  <%= link_to 'Atras', categories_path %> |
+  <%= link_to 'Editar', edit_category_path(@category) %>
+</div>
+<div class="col-md-10 col-md-offset-1">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <h3 class="col-md-6">Tipo de Proyecto: <%= @category.name %></h3>
+      </div>
+      <br>
+    
+        <table class="table text-center table-borderless">
+          <tbody>
+            <tr>
+              <td class="col-md-4"><h4>Nombre</h4></td>
+              <td class="text-left"><h4><%= @category.name %></h4></td>
+            </tr>
+            <tr>
+              <td class="col-md-4"><h4>Costo</h4></td>
+              <td class="text-left"><h4><%= number_to_currency(@category.cost, unit: "$",  precision: 0 , format: "%u %n") %></h4></td>
+            </tr>
+           
+          </tbody>
+        </table>
+        <div class="row text-center">
+        <button type="button" class="btn btn-primary btn-small" data-toggle="modal" data-target=".modal-licenses" id="add_license_btn">Agregar Licencia</button>
+      </div>
+      <br>
+      <table class="table" id="table_licenses">
+        <thead>
+          <tr>           
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Costo</th>
+            <th colspan="2" class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="licenses">
+          
+      </table>
+    </div>   
+  </div>
+</div>
+
+<!-- MODAL LICENCIAS -->
+<div class="modal fade modal-licenses" tabindex="-1" role="dialog" aria-hidden="true" style="display: none; padding-right: 15px;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Agregar Licencia</h4>
+      </div>
+      <div class="modal-body col-md-offset-1">
+        <div class="form-horizontal form-label-left">
+          <div class="form-group">
+            <label class="control-label col-md-3">Tipo de licencia:</label>
+            <div class="col-md-6">
+              <%= select_tag  "license-id", options_from_collection_for_select(License.all, :id, :name) ,{prompt: "Tipo de licencia", class: "form-control"} %>
+            </div>
+          </div>
+
+          
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="save_license">Guardar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+  function licenses(category_id){
+    $.ajax({
+      url: '/categories/licenses',
+      data: {"category_id" : category_id},
+      dataType: 'json'
+    })
+    .done(function(result) {
+      if (!result.error) {
+        var licenses = result.licenses;
+        $("#licenses tr").remove();
+        $.each(licenses, function(index, license) {
+          if (license[3] == null){
+          	$("#licenses").append("<tr id="+license[0]+"><td class='text-center'>"+license[1]+"</td><td class='text-center'>USD "+license[2].toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")+"</td><td class='text-center'><a href='#' onclick='return false;' id="+license[0]+" class='delete_license'>Eliminar</a></td></tr>");
+            
+          }else{
+          	$("#licenses").append("<tr id="+license[0]+"><td class='text-center'>"+license[1]+"</td><td class='text-center'>USD "+license[3].toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.")+"</td><td class='text-center'><a href='#' onclick='return false;' id="+license[0]+" class='delete_license'>Eliminar</a></td></tr>");
+          }
+
+        });
+        
+      }
+    }).fail(function() {
+      alert("error 1");
+    })
+    .always(function(){
+      //alert("siempre modify");
+    })
+  }
+
+
+  function add_license(category_id, license_id){
+    $.ajax({
+      url: '/categories/add_license',
+      data: { "category_id" : category_id, "license_id" : license_id},
+      dataType: 'json'
+    })
+    .done(function(result) {
+      if (!result.error) {
+        $("#licenses tr").remove();
+        licenses(category_id);
+        $(".modal-licenses").modal('hide');
+      }else{
+        alert("error")
+      }
+    }).fail(function(e) {
+      alert(e);
+    })
+    .always(function(){
+      //alert("siempre modify");
+    })
+  }
+
+  function delete_license(category_license_id){
+    $.ajax({
+      url: '/categories/delete_license',
+      data: {"category_license_id" : category_license_id},
+      dataType: 'json'
+    })
+    .done(function(result) {
+      if (!result.error) {
+        licenses($("#category_id").val());
+        $(".modal-licenses").modal('hide');
+      }else{
+        alert("error")
+      }
+    }).fail(function() {
+      alert();
+    })
+    .always(function(){
+      //alert("siempre modify");
+    })
+  }
+
+$(document).ready(function(){
+
+  $('.datetime').datetimepicker({
+    format: 'DD-MM-YYYY'
+  });
+
+  licenses($("#category_id").val());
+
+  $("#save_license").on('click', function(){
+    //alert($("#id_fabric").val())
+
+    var category_id = $("#category_id").val();
+    var license_id = $("#license-id").val();
+    
+
+    if (license_id == "") {
+      alert("Debe ingresar tipo de licencia");
+
+    }else{
+      add_license(category_id, license_id);
+      
+    }
+
+  });
+
+  //DELETE MATERIAL
+  $("#licenses").on("click",".delete_license", function(){
+    var license_id = this.id;
+    var confirmation = confirm("¿Estas seguro?");
+    
+    if (confirmation) {
+      delete_license(license_id);
+     // execute ajax
+      
+    }
+  });
+  
+
+ 
+
+});
+
+</script>

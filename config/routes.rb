@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  resources :schools
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_for :users, controllers: {
@@ -35,8 +34,24 @@ Rails.application.routes.draw do
   put 'all_users/:id' => 'users#update', as: :update_user
   delete 'all_users/:id' => 'users#destroy', as: :delete_user
 
-  root to: "static#index"
 
+  get '/schools/show_individual' => 'schools#show_individual'
+  post '/schools/show_individual' => 'schools#show_individual'
+
+  get '/categories/licenses' => 'categories#licenses'
+  get '/categories/add_license' => 'categories#add_license'
+  get '/categories/delete_license' => 'categories#delete_license'
+
+  resources :schools do
+    get :autocomplete_school_name, :on => :collection
+  end
+
+  root to: "static#index"
   
   resources :values
+  resources :schools
+  resources :category_licenses
+  resources :categories
+  resources :quotations
+  resources :licenses
 end

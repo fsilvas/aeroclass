@@ -70,6 +70,6 @@ class ValuesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def value_params
-      params.require(:value).permit(:dolar, :euro, :tablet_cost, :book_cost)
+      params.require(:value).permit(:dolar, :euro, :tablet_cost, :book_cost, :iniciacion, :avanzado, :logro)
     end
 end

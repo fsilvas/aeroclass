@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Category Licenses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>License</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @category_licenses.each do |category_license| %>
+      <tr>
+        <td><%= category_license.category_id %></td>
+        <td><%= category_license.license_id %></td>
+        <td><%= link_to 'Show', category_license %></td>
+        <td><%= link_to 'Edit', edit_category_license_path(category_license) %></td>
+        <td><%= link_to 'Destroy', category_license, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Category License', new_category_license_path %>
