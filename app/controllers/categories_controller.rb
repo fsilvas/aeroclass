@@ -100,7 +100,7 @@ class CategoriesController < ApplicationController
 
   def delete_license
     category_license = CategoryLicense.find(params[:category_license_id])
-    category_license.destro
+    category_license.destroy
     respond_to do |format|      
       format.json {
          render :json => {error: false}
