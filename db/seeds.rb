@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user = User.new
-user.email = 'admin@santillana.cl'
+user.email = 'admin@aeroclassvip.cl'
 user.name = 'Admin'
 user.last_name = ' '
 user.password = '1234567890'
@@ -15,5 +15,3 @@ user.password_confirmation = '1234567890'
 user.add_role :admin
 user.save
 
-
-value = Value.create(dolar: 0, euro: 0, tablet_cost: 0, book_cost: 0, iniciacion: 80000, avanzado: 140000, logro: 160000)

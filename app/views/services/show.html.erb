@@ -1,0 +1,70 @@
+
+
+<br>
+<br>
+<br>
+  <div class="col-md-10 col-md-offset-1">
+    <%= link_to 'Atras', services_path %> |
+    <%= link_to 'Editar', edit_service_path(@service) %>
+  </div>
+<div class="col-lg-10 col-lg-offset-1">
+  <div class="panel panel-default">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="x_panel">
+        <div class="x_title">
+          <h3 class="col-md-10" style="padding-left:0;">Cliente: <%= @service.client.full_name %></h3>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="x_panel">
+          <div class="x_content">
+            <table class='table borderless'>
+              <tr>
+                <td>Dirección retiro:</td>
+                <td><strong><%= @service.begin_address+" "+@service.begin_comuna %></strong></td>
+              </tr>
+              <tr>
+                <td>Dirección destino:</td>
+                <td><strong><%= @service.end_address+" "+@service.end_comuna %></strong></td>
+              </tr>
+              <tr>
+                <td>Fecha:</td>
+                <td><strong><%= @service.service_date.strftime("%d-%m-%Y %H:%M") %></strong></td>
+              </tr>
+              <tr>
+                <td>Conductor:</td>
+                <td><strong><%= @service.driver %></strong></td>
+              </tr>
+              <tr>
+                <td>N° de pasajeros:</td>
+                <td><strong><%= @service.n_passenger %></strong></td>
+              </tr>
+              <tr>
+                <td>N° de maletas:</td>
+                <td><strong><%= @service.n_bag %></strong></td>
+              </tr>
+              <tr>
+                <td>Vuelo:</td>
+                <td><strong><%= @service.flight %></strong></td>
+              </tr>
+              <tr>
+                <td>Tipo de pago:</td>
+                <td><strong><%= @service.pay_type %></strong></td>
+              </tr>
+              <tr>
+                <td>Precio:</td>
+                <td><strong><%= number_to_currency(@service.price, unit: "$",  precision: 0 , format: "%u %n") %></strong></td>
+              </tr>
+              <tr>
+                <td>Observaciones</td>
+                <td><strong><%= @service.comment %></strong></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

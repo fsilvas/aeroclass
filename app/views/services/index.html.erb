@@ -1,0 +1,51 @@
+
+<div class="row">
+  <h2 class="page-header col-md-offset-1 col-md-10">Servicios</h2>
+<div class="col-lg-10 col-lg-offset-1">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-6 text-left">
+        </div>
+        <div class="col-md-6 text-right">
+          <%= link_to new_service_path, class: "btn btn-primary btn-small" do %>
+            <%= material_icon.time_to_leave %> +
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+    <% if @services.any? %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Conductor</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Comuna retiro</th>
+            <th>Comuna destino</th>
+            <th>Precio</th>
+            <th colspan="3" class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @services.each do |service| %>
+            <tr>
+              <td><%= service.driver %></td>
+              <td><%= service.client.name+" "+service.client.last_name %></td>
+              <td><%= service.service_date.strftime("%d-%m-%Y %H:%M") %></td>
+              <td><%= service.begin_comuna %></td>
+              <td><%= service.end_comuna %></td>
+              <td><%= number_to_currency(service.price, unit: "$",  precision: 0 , format: "%u %n") %></td>
+              <td class="text-center"><%= link_to 'Ver', service %></td>
+              <td class="text-center"><%= link_to 'Editar', edit_service_path(service) %></td>
+              <td class="text-center"><%= link_to 'Borrar', service, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,41 @@
+
+<br>
+<br>
+<br>
+  <div class="col-md-10 col-md-offset-1">
+    <%= link_to 'Atras', clients_path %> |
+    <%= link_to 'Editar', edit_client_path(@client) %>
+  </div>
+<div class="col-lg-10 col-lg-offset-1">
+  <div class="panel panel-default">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="x_panel">
+        <div class="x_title">
+          <h3 class="col-md-10" style="padding-left:0;"></h3>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="x_panel">
+          <div class="x_content">
+            <table class='table borderless'>
+              <tr>
+                <td>Nombre:</td>
+                <td><strong><%= @client.name+" "+@client.last_name %></strong></td>
+              </tr>
+              <tr>
+                <td>Teléfono:</td>
+                <td><strong><%= @client.phone %></strong></td>
+              </tr>
+              <tr>
+                <td>Dirección:</td>
+                <td><strong><%= @client.address.nil? ? "" : (@client.address+", "+(@client.nil? ? "" : @client.comuna)) %></strong></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+
+
+<div class="row">
+  <h2 class="page-header col-md-offset-1 col-md-10">Clientes</h2>
+<div class="col-lg-10 col-lg-offset-1">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-6 text-left">
+        </div>
+        <div class="col-md-6 text-right">
+          <%= link_to new_client_path, class: "btn btn-primary btn-small" do %>
+            <%= material_icon.perm_identity %> +
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+    <% if @clients.any? %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th colspan="2" class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @clients.each do |client| %>
+            <tr>
+              <td><%= link_to client.name+" "+(client.last_name.nil? ? "" : client.last_name), client %></td>
+              <td><%= client.phone %></td>
+              <td><%= client.address+", "+client.comuna %></td>
+              <td class="text-center"><%= link_to 'Editar', edit_client_path(client) %></td>
+              <td class="text-center"><%= link_to 'Borrar', client, method: :delete, data: { confirm: '¿Estas seguro?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

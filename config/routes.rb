@@ -34,24 +34,14 @@ Rails.application.routes.draw do
   put 'all_users/:id' => 'users#update', as: :update_user
   delete 'all_users/:id' => 'users#destroy', as: :delete_user
 
+  get '/clients/get_address' => 'clients#get_address'
 
-  get '/schools/show_individual' => 'schools#show_individual'
-  post '/schools/show_individual' => 'schools#show_individual'
-
-  get '/categories/licenses' => 'categories#licenses'
-  get '/categories/add_license' => 'categories#add_license'
-  get '/categories/delete_license' => 'categories#delete_license'
-
-  resources :schools do
-    get :autocomplete_school_name, :on => :collection
+  resources :services do
+    get :autocomplete_client_phone, :on => :collection
   end
 
   root to: "static#index"
   
-  resources :values
-  resources :schools
-  resources :category_licenses
-  resources :categories
-  resources :quotations
-  resources :licenses
+  resources :services
+  resources :clients
 end

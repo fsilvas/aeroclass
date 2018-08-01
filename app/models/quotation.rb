@@ -1,2 +1,0 @@
-class Quotation < ApplicationRecord
-end

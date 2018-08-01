@@ -39,14 +39,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
-    axlsx (2.0.1)
-      htmlentities (~> 4.3.1)
-      nokogiri (>= 1.4.1)
-      rubyzip (~> 1.0.0)
-    axlsx_rails (0.5.1)
-      actionpack (>= 3.1)
-      axlsx (>= 2.0.1)
-    bcrypt (3.1.11)
+    bcrypt (3.1.12)
     bindex (0.5.0)
     bootstrap3-datetimepicker-rails (4.17.47)
       momentjs-rails (>= 2.8.1)
@@ -55,7 +48,7 @@ GEM
       jquery-rails
     builder (3.2.3)
     byebug (10.0.2)
-    cancancan (2.1.1)
+    cancancan (2.2.0)
     cocoon (1.2.11)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -66,22 +59,21 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
-    devise (4.3.0)
+    devise (4.4.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.2)
+      railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.4.0)
-      devise (>= 3.1)
+    devise-i18n (1.6.4)
+      devise (>= 4.4)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.25)
-    font-awesome-rails (4.7.0.2)
-      railties (>= 3.2, < 5.2)
+    font-awesome-rails (4.7.0.4)
+      railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    htmlentities (4.3.4)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -108,10 +100,10 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     modernizr-rails (2.7.1)
-    momentjs-rails (2.17.1)
+    momentjs-rails (2.20.1)
       railties (>= 3.1)
     multi_json (1.13.1)
-    mysql2 (0.4.9)
+    mysql2 (0.4.10)
     nio4r (2.3.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
@@ -158,8 +150,7 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    rolify (5.1.0)
-    rubyzip (1.0.0)
+    rolify (5.2.0)
     rut_validation (1.1.0)
       railties (>= 4.1)
     sass (3.5.7)
@@ -195,7 +186,7 @@ GEM
     turbolinks-source (5.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.15)
+    uglifier (4.1.16)
       execjs (>= 0.3.0, < 3)
     warden (1.2.7)
       rack (>= 1.0)
@@ -213,8 +204,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  axlsx (= 2.0.1)
-  axlsx_rails
   bootstrap3-datetimepicker-rails (~> 4.17.47)
   bootstrap_sb_admin_base_v2
   byebug
@@ -237,7 +226,6 @@ DEPENDENCIES
   rails (~> 5.0.6)
   rails4-autocomplete
   rolify
-  rubyzip (= 1.0.0)
   rut_validation
   sass-rails (~> 5.0)
   spring

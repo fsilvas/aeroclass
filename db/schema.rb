@@ -10,36 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180724142226) do
+ActiveRecord::Schema.define(version: 20180801160403) do
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "clients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.integer  "cost"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "category_licenses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "category_id"
-    t.integer  "license_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "licenses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.float    "usd_cost",   limit: 24
-    t.float    "euro_cost",  limit: 24
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
-  create_table "quotations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "status"
-    t.datetime "quotation_date"
-    t.float    "price",          limit: 24
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "last_name"
+    t.text     "address",    limit: 65535
+    t.string   "comuna"
+    t.string   "phone"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -52,26 +32,24 @@ ActiveRecord::Schema.define(version: 20180724142226) do
     t.index ["name"], name: "index_roles_on_name", using: :btree
   end
 
-  create_table "schools", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "name",            limit: 65535
-    t.text     "address",         limit: 65535
-    t.string   "rbd"
-    t.string   "principal"
-    t.string   "principal_email"
-    t.string   "principal_phone"
-    t.string   "utp"
-    t.string   "utp_email"
-    t.string   "utp_phone"
-    t.string   "tic"
-    t.string   "tic_email"
-    t.string   "tic_phone"
-    t.string   "isp"
-    t.string   "bandwidth"
-    t.integer  "n_teachers_pre"
-    t.integer  "n_teachers_pri"
-    t.integer  "n_teachers_sec"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+  create_table "services", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "client_id"
+    t.string   "begin_address"
+    t.string   "begin_comuna"
+    t.string   "end_address"
+    t.string   "end_comuna"
+    t.datetime "hour"
+    t.datetime "service_date"
+    t.string   "driver"
+    t.integer  "n_passenger"
+    t.integer  "n_bag"
+    t.string   "flight"
+    t.string   "pay_type"
+    t.string   "status"
+    t.text     "comment",       limit: 65535
+    t.integer  "price"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -98,18 +76,6 @@ ActiveRecord::Schema.define(version: 20180724142226) do
     t.integer "user_id"
     t.integer "role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
-  end
-
-  create_table "values", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.float    "dolar",       limit: 24
-    t.float    "euro",        limit: 24
-    t.float    "tablet_cost", limit: 24
-    t.float    "book_cost",   limit: 24
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.float    "iniciacion",  limit: 24
-    t.float    "avanzado",    limit: 24
-    t.float    "logro",       limit: 24
   end
 
 end

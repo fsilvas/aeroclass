@@ -11,7 +11,7 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
 
-    <title>Santillana Compartir</title>
+    <title>AeroClassVip</title>
     <link rel="shortcut icon" type="image/png" href="<%= image_url('favicon.ico') %>"/>
   </head>
 
@@ -20,7 +20,7 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top " role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top " role="navigation" style="margin-bottom: 0; min-height: 63px;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -29,7 +29,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <%= link_to root_path, {:class => "navbar-brand", style: "padding-top: 2px;"} do %>
-                    <%= image_tag("logo.png", height: "140%", width: "50%") %>
+                    <%= image_tag("logo.png", height: "190%", width: "50%") %>
                 <% end %>
                 
             </div>
@@ -131,7 +131,7 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar  " role="navigation">
+            <div class="navbar-default sidebar  " role="navigation" style="margin-top: 63px;">
                 <%= render 'static/menu' %>
                 <!-- /.sidebar-collapse -->
             </div>

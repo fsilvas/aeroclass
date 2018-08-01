@@ -1,0 +1,172 @@
+
+
+<div class="row">
+  <h2 class="page-header col-md-offset-1 col-md-10">Servicio</h2>
+  <div class="col-lg-10 col-lg-offset-1">
+    <div class="panel panel-default">
+      <div class="panel-body">
+      <br>
+      <%= form_for(service, html:{class:"form-horizontal form-label-left"}) do |f| %>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="number">Cliente:<span class="required"></span>
+            </label>
+            <div class="col-md-6">
+              <%= f.text_field :client_id, hidden: true %>
+              <%= autocomplete_field_tag('client_name', '', autocomplete_client_phone_services_path, class: "form-control", :update_elements => {:id => '#service_client_id'}, placeholder: "Seleccione cliente", value: f.object.client_id.nil? ? "" : Client.find(f.object.client_id).full_name) %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="status">Dirección retiro: <span class="required"></span>
+            </label>
+            <div class="col-md-6">
+              <%= f.text_field :begin_address, class: "form-control col-md-4" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="status">Comuna retiro: <span class="required"></span>
+            </label>
+            <div class="col-md-6">
+              <%= f.select :begin_comuna, options_for_select(["Santiago", "Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa" ,"Pedro Aguirre Cerda" ,"Peñalolén" ,"Providencia" ,"Pudahuel" ,"Quilicura" ,"Quinta Normal" ,"Recoleta" ,"Renca" ,"San Joaquín" ,"San Miguel" ,"San Ramón" ,"Vitacura"]), {prompt: "Seleccione comuna"}, class: "form-control col-md-7" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="status">Dirección destino: <span class="required"></span>
+            </label>
+            <div class="col-md-6">
+              <%= f.text_field :end_address, class: "form-control col-md-4" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="status">Comuna destino: <span class="required"></span>
+            </label>
+            <div class="col-md-6">
+              <%= f.select :end_comuna, options_for_select(["Santiago", "Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa" ,"Pedro Aguirre Cerda" ,"Peñalolén" ,"Providencia" ,"Pudahuel" ,"Quilicura" ,"Quinta Normal" ,"Recoleta" ,"Renca" ,"San Joaquín" ,"San Miguel" ,"San Ramón" ,"Vitacura"]), {prompt: "Seleccione comuna"}, class: "form-control col-md-7" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="status">Conductor: <span class="required"></span>
+            </label>
+            <div class="col-md-6">
+              <%= f.text_field :driver, class: "form-control col-md-4" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="last-name">Fecha servicio:</label>
+            <div class="col-md-6">
+              <%= f.text_field :service_date, class: "form-control col-md-7 datetime", value: f.object.service_date.nil? ? "" : f.object.service_date.strftime("%d-%m-%Y") %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="last-name">Hora servicio:</label>
+            <div class="col-md-6">
+              <%= f.text_field :hour, class: "form-control col-md-7 datetimehour", value: f.object.hour.nil? ? "" : f.object.hour.strftime("%H:%M") %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="status">Número de pasajeros: <span class="required"></span>
+            </label>
+            <div class="col-md-6">
+              <%= f.text_field :n_passenger, class: "form-control col-md-4" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="status">Número de maletas: <span class="required"></span>
+            </label>
+            <div class="col-md-6">
+              <%= f.text_field :n_bag, class: "form-control col-md-4" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="status">Vuelo: <span class="required"></span>
+            </label>
+            <div class="col-md-6">
+              <%= f.text_field :flight, class: "form-control col-md-4" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="status">Tipo de pago: <span class="required"></span>
+            </label>
+            <div class="col-md-6">
+              <%= f.text_field :pay_type, class: "form-control col-md-4" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="status">Costo: <span class="required"></span>
+            </label>
+            <div class="col-md-6">
+              <%= f.text_field :price, class: "form-control col-md-4" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-md-3" for="status">Comentario: <span class="required"></span>
+            </label>
+            <div class="col-md-6">
+              <%= f.text_area :comment, size: "100x3", class: "form-control col-md-4" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-4 col-md-offset-3 col-xs-4 col-xs-offset-2">
+              <%= f.submit "Guardar", class: "btn btn-success" %>           
+            </div>
+            <div class="col-md-2 col-xs-2">
+              <%= link_to "Cancelar", services_path, class: "btn btn-primary" %>            
+            </div>
+          </div>
+          
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  function get_address(client_id){
+    $.ajax({
+      url: '/clients/get_address',
+      data: { "client_id" : client_id},
+      dataType: 'json'
+    })
+    .done(function(result) {
+      $("#service_begin_address").val(result.address);
+      $("#service_begin_comuna").val(result.comuna);
+    }).fail(function(e) {
+      alert("asasd");
+    })
+    .always(function(){
+      //alert("siempre modify");
+    })
+  }
+
+  $(function() {
+    $('.datetime').datetimepicker({
+      format: 'DD-MM-YYYY'
+    });
+    $('.datetimehour').datetimepicker({
+      format: 'hh:mm'
+    });
+    $("#purchase_neto").on("change", function(){
+      iva(this.value);
+    });
+
+    $('#client_name').bind('railsAutocomplete.select', function(event, data){
+
+      /* Do something here */
+      //alert(staff_id);
+      var client_id = data.item.id;
+      //alert(begin_address);
+      get_address(client_id);
+
+    });
+
+    $('#purchase_bodega').on('click', function(){
+      if ($('#purchase_bodega').is(':checked')){
+        $('#add_materials').show();
+      }else{
+        $(".dynamic").trigger( "click" );
+        $('#add_materials').hide();
+      }
+    });
+  });
+
+</script>
