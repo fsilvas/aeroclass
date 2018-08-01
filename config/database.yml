@@ -48,5 +48,5 @@ production:
   pool: 5
   username: root
   database: aeroclass
-  password: aeroclass_pass
+  password: AEROCLASS_DB
   socket: /var/run/mysqld/mysqld.sock
